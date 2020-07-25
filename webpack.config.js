@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const main = {
   mode: 'development',
@@ -37,15 +38,26 @@ const renderer = {
     extensions: ['.json', '.js', '.jsx', '.css', '.ts', '.tsx'],
   },
   module: {
-    rules: [{
-      test: /\.(tsx|ts)$/,
-      use: ['ts-loader'],
-      include: [
-        path.resolve(__dirname, 'src'),
-        path.resolve(__dirname, 'node_modules'),
-      ],
-    }],
+    rules: [
+      {
+        test: /\.(tsx|ts)$/,
+        use: ['ts-loader'],
+        include: [
+          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'node_modules'),
+        ],
+      },
+      {
+        test: /\.html$/,
+        loader: "html-loader",
+      }
+    ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src', 'index.html')
+    })
+  ]
 }
 
 module.exports = [ main, renderer ];
