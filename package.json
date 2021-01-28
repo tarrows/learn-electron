@@ -31,7 +31,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "electron": "^9.1.1",
+    "electron": "^9.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
